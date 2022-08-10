@@ -1,3 +1,5 @@
+
+
 #include "main.h"
 
 /**
@@ -47,19 +49,19 @@ char *_which(char *cmd, char **_environ)
 			if (is_cdir(path, &i))
 				if (stat(cmd, &st) == 0)
 					return (cmd);
-				len_dir = _strlen(token_path);
-				dir = malloc(len_dir + len_cmd + 2);
-				_strcpy(dir, token_path);
-				_strcat(dir, "/");
-				_strcat(dir, cmd);
-				_strcat(dir, "\0");
-				if (stat(dir, &st) == 0)
-	                       	{
-					free(ptr_path);
-					return (dir);
-				}
-				free(dir);
-				token_path = _strtok(NULL, ":");
+			len_dir = _strlen(token_path);
+			dir = malloc(len_dir + len_cmd + 2);
+			_strcpy(dir, token_path);
+			_strcat(dir, "/");
+			_strcat(dir, cmd);
+			_strcat(dir, "\0");
+			if (stat(dir, &st) == 0)
+			{
+				free(ptr_path);
+				return (dir);
+			}
+			free(dir);
+			token_path = _strtok(NULL, ":");
 		}
 		free(ptr_path);
 		if (stat(cmd, &st) == 0)
